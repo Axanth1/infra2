@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: naked-to-www-redirect
+  annotations:
+    nginx.ingress.kubernetes.io/permanent-redirect: https://www.duepilot.gr$request_uri
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - duepilot.gr
+      secretName: www-duepilot-tls
+  rules:
+    - host: duepilot.gr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dummy-service
+                port:
+                  number: 80
