@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: axanth-ingress
+  name: duepilot-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
@@ -10,27 +10,27 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - www.axanth.gr
-        - axanth.gr
-      secretName: www-axanth-tls
+        - www.duepilot.gr
+        - duepilot.gr
+      secretName: www-duepilot-tls
   rules:
-    - host: www.axanth.gr
+    - host: www.duepilot.gr
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: axanth-service
+                name: duepilot-service
                 port:
                   number: 80
-    - host: axanth.gr
+    - host: duepilot.gr
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: axanth-service
+                name: duepilot-service
                 port:
                   number: 80

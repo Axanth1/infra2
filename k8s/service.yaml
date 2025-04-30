@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: axanth-service
+  name: duepilot-service
 spec:
   selector:
-    app: axanth-app
+    app: duepilot-app
   ports:
     - protocol: TCP
       port: 80
