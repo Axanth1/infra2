@@ -20,5 +20,15 @@ spec:
           env:
             - name: DJANGO_SETTINGS_MODULE
               value: app.settings
+            - name: DATABASE_NAME
+              value: duepilot_db
+            - name: DATABASE_USER
+              value: duepilot_user
+            - name: DATABASE_PASSWORD
+              value: duepilot_pass
+            - name: DATABASE_HOST
+              value: duepilot-postgres
+            - name: DATABASE_PORT
+              value: "5432"
           command: ["python"]
           args: ["manage.py", "runserver", "0.0.0.0:8000"]
