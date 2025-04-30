@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redirect-config
+data:
+  default.conf: |
+    server {
+      listen 80;
+      server_name duepilot.gr;
+      return 301 https://www.duepilot.gr$request_uri;
+    }

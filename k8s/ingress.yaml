@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: duepilot-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   tls:
@@ -14,17 +14,17 @@ spec:
         - duepilot.gr
       secretName: www-duepilot-tls
   rules:
-    - host: www.duepilot.gr
+    - host: duepilot.gr
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: duepilot-service
+                name: redirect-service
                 port:
                   number: 80
-    - host: duepilot.gr
+    - host: www.duepilot.gr
       http:
         paths:
           - path: /
